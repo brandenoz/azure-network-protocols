@@ -29,7 +29,7 @@ I will create a resource group named “Network-Traffic”. When done with the p
 - Make sure to click “I Confirm” on the box under Licensing.
 - When you get to Networking, click "Create New" the Virtual Network. Name the Virtual Network "Virtual-Network-1". <br>
 
-[1]
+![1-Create a Virtual Network (1)](https://github.com/user-attachments/assets/b1995e37-9ab7-4a19-9255-ec9d616dce1d)
 
 Create a Linux virtual machine. 
 - Name the virtual machine "Linux-VM".
