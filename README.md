@@ -47,7 +47,7 @@ In our Windows 10 Virtual Machine we will Google Wireshark and download.
 - Open Wireshark.
 - Click on the blue Shark fin in the upper-left corner.
 
-<h3>Filter by ICMP</h3>
+<h3>Filter for ICMP Traffic</h3>
 
 In the Display Filter, which looks like a search bar, type "ICMP" and press Enter. <br>
 
@@ -110,3 +110,44 @@ In Azure, navigate to virtual machines and click on Linux-VM. From here click on
 
 - We can now delete our security rule from the Linux-VM. When the the rule being deleted takes effect we will see replies in PowerShell from our Ping and we will see request and replies in WireShark for ICMP traffic. (remember you can restart the capture to see fresh traffic in Wireshark)
 - Now we can stop our ping. Press Ctrl+C to stop the ping in PowerShell and stop the capture in Wireshark by clicking on the red square in the upper-left corner of the screen. 
+
+<h3>Step 4: Filter for SSH Traffic</h3>
+
+In Wireshark, we will filter the capture to SSH traffic by typing "ssh" into the Display Filter then pressing Enter. 
+- Open Windows PowerShell and type "ssh Brandenoz@10.0.0.5" then press Enter. (10.0.0.5 is the private IP address of Linux-VM, while Brandenoz is the username of the admin) 
+- We will be asked if we would like to login, yes or no, type "yes" then press Enter.
+- Next you will be prompted to type the password for this user and press Enter. Note, you will not see the password while you type it, this is a security function. While we are doing all this you will see SSH traffic in Wireshark being captured.
+- You can see that prompt changed to Brandenoz@Linux-VM. This shows we are actually connected to the Linux machine and logged in as our user, "Brandenoz." Think of Brandenoz@Linux-VM as user@computer. <br>
+
+![image](https://github.com/user-attachments/assets/b608b8b1-4a9f-4033-ae57-5a0a342cf43b)
+
+- SSH stands for Secure Socket Shell. In PowerShell we can type "id" then press Enter to get our user ID. Type "hostname", press Enter to get our computer host's name, Linux-VM. Type "uname -a" to get info on the operating system of the host, which is Linux.
+- If you noticed while we type anything in PowerShell is creating traffic for SSH in Wireshark. Even a single keystroke like "f" or deleting a single keystroke will create traffic we can see in Wireshark. Everything in SSH is coming through an encrypted tunnel. Even though we can break down the payload using Wireshark, it is encrypted and we will not be able to figure out that what is being sent was the single keystoke of "f".
+- To exit Linux-VM, in PowerShell type "exit" then press Enter. We'll see that the connection is sent with "RST" for resent in Wireshark and that we are back to using PowerShell as Brandenoz user on Windows-VM. <br>
+
+![image](https://github.com/user-attachments/assets/a08b5219-5db0-43f3-8871-70620b3c355d)
+
+<h3>Filter for DNS Traffic</h3>
+
+In the Display Filter type "dns" then press Enter.  
+- In PowerShell type "nslookup" then press Enter. You will see the DNS traffic this causes in Wireshark. <br>
+
+![image](https://github.com/user-attachments/assets/c826f0aa-fa3b-4259-83b4-d2cfe745c83b)
+
+- DNS stands for Domain Name Server and simply resolves human readable names into computer readable IP addresses. What is happening in our nslookup is we are getting the IP address for disney.com as 130.211.198.204. We could take the IP address and search it in a web browser and we would get a Disney owned page. Sometimes you could load a modern website based on the IP address, but rarely for security reasons. See the search for 130.211.198.204. <br>
+
+![image](https://github.com/user-attachments/assets/6f2a91ec-7718-4119-a2b8-e75e3a7244c3)
+
+<h3>Step 5: Filter for RDP Traffic</h3>
+
+RDP stands for Remote Desktop Protocol and that is what we have been using for most of this project with the Windows Remote Desktop Connection program. 
+- In Wireshark's Display Filter type "tcp.port == 3389" for RDP then press Enter. <br>
+
+![image](https://github.com/user-attachments/assets/ec529ed0-2b13-4d05-b721-93f142c7bdb3)
+
+You will notice a contstant stream of information. What is happening is that all that is happening as a live stream of since we are getting a constant image from being remotely connected to Windows-VM from wherever we are using Remote Desktop Connection. There is a steady live stream wether we are moving the mouse or not because an image is constantly being displayed for us. Compare that with ICMP which was only sending information when prompted. 
+
+<h3>Step 6: Cleaning Up</h3>
+
+If you are done with the VMs for now make sure to stop them and confirm completion before walking away. If permenantly done, you can delete the resource group to delete all of the resources housed within the resource group, Network-Traffic resource group. Confirm that the resource group is deleted before navigating away just to be sure it was comepleted successfully. 
+- To see other projects click here: https://github.com/brandenoz. 
