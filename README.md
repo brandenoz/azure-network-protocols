@@ -3,7 +3,7 @@
 </p>
 
 <h1>Inspecting Traffic Between Computers</h1>
-In this project, we will use Wireshark, a protocol analyzer to observe network traffic between two virtual machines that we will create. 
+In this project, we will use Wireshark, a protocol analyzer to observe network traffic between two virtual machines that we will create. If you haven't created a virtual machine before, check out my previous project here: https://github.com/brandenoz/virtual-machine. 
 
 <h2>Environments and Technologies Used</h2>
 
