@@ -18,9 +18,31 @@ In this project, we will use Wireshark, a protocol analyzer to observe network t
 - Windows 10 (21H2)
 - Ubuntu Server 20.04
 
-<h2>Actions and Observations</h2>
+<h2>Configuration Steps</h2>
 
-<h3>Step 1: Do Stuff</h3>
+<h3>Step 1: Setting Up Environment</h3>
 
-Text beneath heading. 
-- Bullet points. 
+I will create a resource group named “Network-Traffic”. When done with the project, I can delete the resource group to remove all resources used in this project rather than removing each resource. 
+- First create a virtual machine named “Windows-VM”. 
+- Choose Windows 10 Pro for the operating system, or image. 
+- Choose at least 2 VCPUs for the size to make sure it is not too slow. 
+- Make sure to click “I Confirm” on the box under Licensing.
+- When you get to Networking, click "Create New" the Virtual Network. Name the Virtual Network "Virtual-Network-1". <br>
+
+[1]
+
+Create a Linux virtual machine. 
+- Name the virtual machine "Linux-VM".
+- Choose Ubuntu Server for the operationg system, or image.
+- Choose at least 2 VCPUs for the size.
+- Under "Administrator account" select Password for the Authentication type. Set your same username and password.
+- Under Networking, make sure to select the same Virtual Network that we previously created, "Virtual-Network-1".
+Make sure both of our virtual machines are on the same subnet. When you click on the two virtual machines, you should see that hte Virtual network/subnet is "Virtual-Network-1/default".
+
+<h3>Step 2: Download Wireshark, a Protocol Analyzer</h3>
+
+In our Windows 10 Virtual Machine we will Google Wireshark and download. 
+- Go to wireshark.org and download the Windows x64 Installer.
+- Click "Next" on everything through the installation process.
+- Open Wireshark.
+- Click on the blue Shark fin in the upper-left corner. 
